@@ -13,7 +13,12 @@ pipeline {
         }
         stage('Package') {
             steps {
-                echo 'Packaging application into deployable format...'
+                echo 'Packaging application...'
+            }
+        }
+        stage('Deploy') {
+            steps {
+                echo 'Deploying application to staging server...'
             }
         }
     }

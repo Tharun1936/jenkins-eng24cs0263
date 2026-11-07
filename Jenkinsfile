@@ -3,8 +3,12 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building application...'
-                error('Intentional build failure for J10')
+                echo 'Building application successfully after fix...'
+            }
+        }
+        stage('Test') {
+            steps {
+                echo 'Running tests successfully...'
             }
         }
     }

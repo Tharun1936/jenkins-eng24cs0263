@@ -1,5 +1,8 @@
 pipeline {
     agent any
+    options {
+        timestamps() // Enables timestamps in the console output
+    }
     stages {
         stage('Checkout') {
             steps {

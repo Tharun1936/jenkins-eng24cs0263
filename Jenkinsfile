@@ -1,15 +1,32 @@
 pipeline {
     agent any
     stages {
-        stage('Build') {
+        stage('Checkout') {
             steps {
-                echo 'Building application successfully after fix...'
+                checkout scm
             }
         }
-        stage('Test') {
+        stage('Build & Test') {
             steps {
-                echo 'Running tests successfully...'
+                echo 'Running application build and tests...'
             }
+        }
+        stage('Build Docker Image') {
+            steps {
+                script {
+                    // Builds the image using the Dockerfile in the workspace
+                    // Tag it with the build number for version tracking
+                    sh "docker build -t my-app:${env.BUILD_NUMBER} ."
+                }
+            }
+        }
+    }
+    post {
+        success {
+            echo 'Docker image successfully built and tagged!'
+        }
+        failure {
+            echo 'Pipeline failed during Docker image creation.'
         }
     }
 }

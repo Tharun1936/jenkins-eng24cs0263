@@ -3,31 +3,9 @@ pipeline {
     stages {
         stage('Build') {
             steps {
-                echo 'Building application artifacts...'
+                echo 'Building application...'
+                error('Intentional build failure for J10')
             }
-        }
-        stage('Test') {
-            steps {
-                echo 'Running automated tests...'
-            }
-        }
-        stage('Package') {
-            steps {
-                echo 'Packaging application...'
-            }
-        }
-        stage('Deploy') {
-            steps {
-                echo 'Deploying application to staging server...'
-            }
-        }
-    }
-    post {
-        success {
-            echo 'CI/CD Pipeline executed successfully!'
-        }
-        failure {
-            echo 'Pipeline failed during execution.'
         }
     }
 }
